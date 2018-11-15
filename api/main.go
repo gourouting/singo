@@ -3,9 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"gin_example/conf"
 	"gin_example/model"
 	"gin_example/serializer"
-	"gin_example/util"
 
 	"github.com/gin-gonic/gin"
 	validator "gopkg.in/go-playground/validator.v8"
@@ -33,8 +33,8 @@ func CurrentUser(c *gin.Context) *model.User {
 func ErrorResponse(err error) serializer.Response {
 	if ve, ok := err.(validator.ValidationErrors); ok {
 		for _, e := range ve {
-			field := util.T(fmt.Sprintf("Field.%s", e.Field))
-			tag := util.T(fmt.Sprintf("Tag.Valid.%s", e.Tag))
+			field := conf.T(fmt.Sprintf("Field.%s", e.Field))
+			tag := conf.T(fmt.Sprintf("Tag.Valid.%s", e.Tag))
 			return serializer.Response{
 				Status: 40001,
 				Msg:    fmt.Sprintf("%s%s", field, tag),
