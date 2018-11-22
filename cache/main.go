@@ -4,7 +4,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 )
 
@@ -12,7 +11,7 @@ import (
 var RedisClient *redis.Client
 
 // Redis 在中间件中初始化redis链接
-func Redis() gin.HandlerFunc {
+func Redis() {
 	db, _ := strconv.ParseUint(os.Getenv("REDIS_DB"), 10, 64)
 	client := redis.NewClient(&redis.Options{
 		Addr:     os.Getenv("REDIS_ADDR"),
@@ -27,9 +26,4 @@ func Redis() gin.HandlerFunc {
 	}
 
 	RedisClient = client
-
-	return func(c *gin.Context) {
-		c.Set("RedisClient", client)
-		c.Next()
-	}
 }

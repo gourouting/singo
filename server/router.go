@@ -2,9 +2,7 @@ package server
 
 import (
 	"gin_example/api"
-	"gin_example/cache"
 	"gin_example/middleware"
-	"gin_example/model"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -15,8 +13,6 @@ func NewRouter() *gin.Engine {
 	r := gin.Default()
 
 	// 中间件, 顺序不能改
-	r.Use(model.Database(os.Getenv("MYSQL_DSN")))
-	r.Use(cache.Redis())
 	r.Use(middleware.Session(os.Getenv("SESSION_SECRET")))
 	r.Use(middleware.Cors())
 	r.Use(middleware.CurrentUser())

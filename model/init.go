@@ -3,7 +3,6 @@ package model
 import (
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 
 	//
@@ -14,7 +13,7 @@ import (
 var DB *gorm.DB
 
 // Database 在中间件中初始化mysql链接
-func Database(connString string) gin.HandlerFunc {
+func Database(connString string) {
 	db, err := gorm.Open("mysql", connString)
 	db.LogMode(true)
 	// Error
@@ -32,9 +31,4 @@ func Database(connString string) gin.HandlerFunc {
 	DB = db
 
 	migration()
-
-	return func(c *gin.Context) {
-		c.Set("DB", db)
-		c.Next()
-	}
 }

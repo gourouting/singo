@@ -1,6 +1,10 @@
 package conf
 
 import (
+	"gin_example/cache"
+	"gin_example/model"
+	"os"
+
 	"github.com/joho/godotenv"
 )
 
@@ -13,4 +17,8 @@ func Init() {
 	if err := LoadLocales("conf/locales/zh-cn.yaml"); err != nil {
 		panic(err)
 	}
+
+	// 连接数据库
+	model.Database(os.Getenv("MYSQL_DSN"))
+	cache.Redis()
 }
