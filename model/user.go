@@ -8,9 +8,9 @@ import (
 // User 用户模型
 type User struct {
 	gorm.Model
-	UserName       string `gorm:"unique_index"`
+	UserName       string
 	PasswordDigest string
-	Nickname       string `gorm:"unique_index"`
+	Nickname       string
 	Status         string
 	Avatar         string `gorm:"size:1000"`
 }
