@@ -52,13 +52,11 @@ GIN_MODE="debug"
 
 ## Go 依赖
 
+本项目使用govendor管理依赖。
+
 ```shell
-go get -u github.com/gin-gonic/gin
-go get -u github.com/jinzhu/gorm
-go get -u github.com/gin-contrib/cors
-go get -u github.com/gin-contrib/sessions
-go get -u github.com/joho/godotenv
-go get -u github.com/go-redis/redis
+go get -u github.com/kardianos/govendor
+govendor init
 ```
 
 ## 运行
