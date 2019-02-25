@@ -1,4 +1,6 @@
-# Golang API范例项目
+# Golang Fast CRUD
+
+http://ksogit.kingsoft.net/chengnan/golang-fast-crud
 
 ## 目的
 
