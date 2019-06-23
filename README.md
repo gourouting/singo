@@ -2,6 +2,16 @@
 
 http://ksogit.kingsoft.net/chengnan/golang-fast-crud
 
+## 视频实况教程
+
+[让我们写个G站吧！Golang全栈编程实况：第一集，为何而学](https://www.bilibili.com/video/av56437048)
+
+[让我们写个G站吧！Golang全栈编程实况：第二集，伟大航路的开始](https://www.bilibili.com/video/av56462267)
+
+## 使用Go CRUD开发的项目实例
+
+https://github.com/bydmm/giligili
+
 ## 目的
 
 本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
@@ -10,15 +20,14 @@ http://ksogit.kingsoft.net/chengnan/golang-fast-crud
 
 本项目已经整合了许多开发API所必要的组件：
 
-1. Gin: 轻量级Web框架，自称路由速度是golang最快的
-2. GORM: ORM工具。本项目需要配合Mysql使用
-3. Gin-Session: Gin框架提供的Session操作工具
-4. Go-Redis: Golang Redis客户端
-5. godotenv: 开发环境下的环境变量工具，方便使用环境变量
-6. Gin-Cors: Gin框架提供的跨域中间件
+1. [Gin](https://github.com/gin-gonic/gin): 轻量级Web框架，自称路由速度是golang最快的 
+2. [GORM](http://gorm.io/docs/index.html): ORM工具。本项目需要配合Mysql使用 
+3. [Gin-Session](https://github.com/gin-contrib/sessions): Gin框架提供的Session操作工具
+4. [Go-Redis](https://github.com/go-redis/redis): Golang Redis客户端
+5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
+6. [Gin-Cors](https://github.com/gin-contrib/cors): Gin框架提供的跨域中间件
 7. 自行实现了国际化i18n的一些基本功能
 8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
-
 
 本项目已经预先实现了一些常用的代码方便参考和复用:
 
@@ -54,7 +63,8 @@ GIN_MODE="debug"
 
 ## Go 依赖
 
-本项目使用govendor管理依赖。
+本项目使用[govendor](https://github.com/kardianos/govendor)管理依赖，以上描述的依赖已经提交到仓库之中。
+下面是你想后期修改依赖的准备工作
 
 ```shell
 go get -u github.com/kardianos/govendor

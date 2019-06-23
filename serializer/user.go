@@ -1,6 +1,6 @@
 package serializer
 
-import "gin_example/model"
+import "go-crud/model"
 
 // User 用户序列化器
 type User struct {

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"gin_example/model"
-	"gin_example/serializer"
+	"go-crud/model"
+	"go-crud/serializer"
 )
 
 // UserRegisterService 管理用户注册服务

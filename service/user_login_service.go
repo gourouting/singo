@@ -1,8 +1,8 @@
 package service
 
 import (
-	"gin_example/model"
-	"gin_example/serializer"
+	"go-crud/model"
+	"go-crud/serializer"
 )
 
 // UserLoginService 管理用户登录的服务

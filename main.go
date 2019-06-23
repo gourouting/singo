@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gin_example/conf"
-	"gin_example/server"
+	"go-crud/conf"
+	"go-crud/server"
 )
 
 func main() {
