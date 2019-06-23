@@ -1,12 +1,14 @@
 # Golang Fast CRUD
 
-http://ksogit.kingsoft.net/chengnan/golang-fast-crud
+https://github.com/bydmm/go-crud
 
 ## 视频实况教程
 
 [让我们写个G站吧！Golang全栈编程实况：第一集，为何而学](https://www.bilibili.com/video/av56437048)
 
 [让我们写个G站吧！Golang全栈编程实况：第二集，伟大航路的开始](https://www.bilibili.com/video/av56462267)
+
+[让我们写个G站吧！Golang全栈编程实况：第三集，视频补完计划](https://www.bilibili.com/video/av56582832)
 
 ## 使用Go CRUD开发的项目实例
 
