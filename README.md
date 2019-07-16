@@ -4,11 +4,7 @@ https://github.com/bydmm/go-crud
 
 ## 视频实况教程
 
-[让我们写个G站吧！Golang全栈编程实况：第一集，为何而学](https://www.bilibili.com/video/av56437048)
-
-[让我们写个G站吧！Golang全栈编程实况：第二集，伟大航路的开始](https://www.bilibili.com/video/av56462267)
-
-[让我们写个G站吧！Golang全栈编程实况：第三集，视频补完计划](https://www.bilibili.com/video/av56582832)
+[让我们写个G站吧！Golang全栈编程实况](https://space.bilibili.com/10/channel/detail?cid=78794)
 
 ## 使用Go CRUD开发的项目实例
 
@@ -63,14 +59,14 @@ SESSION_SECRE="" # Seesion密钥，必须设置而且不要泄露
 GIN_MODE="debug"
 ```
 
-## Go 依赖
+## Go Mod
 
-本项目使用[govendor](https://github.com/kardianos/govendor)管理依赖，以上描述的依赖已经提交到仓库之中。
-下面是你想后期修改依赖的准备工作
+本项目使用[Go Mod](https://github.com/golang/go/wiki/Modules)管理依赖。
 
 ```shell
-go get -u github.com/kardianos/govendor
-govendor init
+go mod init go-crud
+export GOPROXY=http://mirrors.aliyun.com/goproxy/
+go run main.go // 自动安装
 ```
 
 ## 运行
