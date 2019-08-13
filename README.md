@@ -4,7 +4,7 @@ Singo: Simple Single Golang Web Service
 
 go-crud正式改名为Singo!
 
-使用Singo开发Web服务，用最简单的架构，实现够用的框架，服务海量用户
+使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
 
 https://github.com/bydmm/singo
 
