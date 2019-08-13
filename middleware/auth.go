@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"go-crud/model"
-	"go-crud/serializer"
+	"singo/model"
+	"singo/serializer"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"

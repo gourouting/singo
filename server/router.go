@@ -1,8 +1,8 @@
 package server
 
 import (
-	"go-crud/api"
-	"go-crud/middleware"
+	"singo/api"
+	"singo/middleware"
 	"os"
 
 	"github.com/gin-gonic/gin"

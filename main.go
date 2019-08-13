@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-crud/conf"
-	"go-crud/server"
+	"singo/conf"
+	"singo/server"
 )
 
 func main() {

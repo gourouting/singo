@@ -1,4 +1,4 @@
-module go-crud
+module singo
 
 go 1.12
 
