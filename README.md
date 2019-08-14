@@ -2,7 +2,7 @@
 
 Singo: Simple Single Golang Web Service
 
-go-crud正式改名为Singo!
+go-crud正式改名为Singo! :sparkles:
 
 使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
 
@@ -57,14 +57,30 @@ https://github.com/bydmm/giligili
 项目在启动的时候依赖以下环境变量，但是在也可以在项目根目录创建.env文件设置环境变量便于使用(建议开发环境使用)
 
 ```shell
-MYSQL_DSN="db_user:db_password@/db_name?charset=utf8&parseTime=True&loc=Local" # Mysql连接地址
+MYSQL_DSN="db_user:db_passwd@tcp(127.0.0.1:3306)/db_name?charset=utf8&parseTime=True&loc=Local" # Mysql连接配置
 REDIS_ADDR="127.0.0.1:6379" # Redis端口和地址
-REDIS_PW="" # Redis连接密码
-REDIS_DB="" # Redis库从0到10
-SESSION_SECRE="" # Seesion密钥，必须设置而且不要泄露
-GIN_MODE="debug"
+REDIS_PW=""                 # Redis连接密码
+REDIS_DB=""                 # Redis库从0到10，不填即为0
+SESSION_SECRE=""            # Seesion密钥，必须设置而且不要泄露
+GIN_MODE="debug"            # 设置gin的运行模式，有 debug 和 release
 ```
 
+Windows安装MySQL和Redis麻烦?:no_mouth: 你可以使用[Docker](https://hub.docker.com/)啊！:sunglasses:
+
+- 快速起Redis: `docker run -di --name redis -p 6379:6379 redis` 
+- 快速起MySQL: `docker run -di --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql` 
+
+因为启动容器指定了--name, 后续可以使用`docker start|stop redis|mysql` 来进行开启或者关闭.
+
+如需要使用navicat等工具管理MySQL，可能会出现报错等情况：:dizzy_face:
+```shell
+docker exec -it mysql /bin/bash    # 打开mysql bash交互
+mysql -u root -p                   # 进入mysql交互
+ALTER USER 'root'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;      # 更改加密方式
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';   # 更改密码
+FLUSH PRIVILEGES;                                                          # 刷新
+```
+    
 ## Go Mod
 
 本项目使用[Go Mod](https://github.com/golang/go/wiki/Modules)管理依赖。
@@ -81,4 +97,12 @@ go run main.go // 自动安装
 go run main.go
 ```
 
-项目运行后启动在3000端口（可以修改，参考gin文档)
+项目运行后启动在3000端口（可以修改，参考gin文档)   
+本项目修改端口请查看`main.go`
+
+
+## 编译
+```shell
+go build main.go
+```
+如需交叉编译请看[这里](https://studygolang.com/articles/13760)
