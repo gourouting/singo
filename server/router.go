@@ -1,9 +1,9 @@
 package server
 
 import (
+	"os"
 	"singo/api"
 	"singo/middleware"
-	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,6 +33,7 @@ func NewRouter() *gin.Engine {
 		{
 			// User Routing
 			v1.GET("user/me", api.UserMe)
+			v1.PUT("user/changepwd", api.ChangePassword)
 			v1.DELETE("user/logout", api.UserLogout)
 		}
 	}

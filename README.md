@@ -40,6 +40,7 @@ https://github.com/bydmm/giligili
 3. 实现了```/api/v1/user/login```用户登录接口
 4. 实现了```/api/v1/user/me```用户资料接口(需要登录后获取session)
 5. 实现了```/api/v1/user/logout```用户登出接口(需要登录后获取session)
+6. 实现了```/api/v1/user/changepwd```用户修改密码接口(修改后需要重新登陆获取session)
 
 本项目已经预先创建了一系列文件夹划分出下列模块:
 
