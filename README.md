@@ -4,6 +4,10 @@ Singo: Simple Single Golang Web Service
 
 使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
 
+原Git: https://github.com/bydmm/singo
+
+这里是经过自己体验之后修改为自己喜欢的样子。 
+
 ## 目的
 
 本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
