@@ -19,7 +19,7 @@ Singo: Simple Single Golang Web Service
 5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
 6. [Gin-Cors](https://github.com/gin-contrib/cors): Gin框架提供的跨域中间件
 7. 自行实现了国际化i18n的一些基本功能
-8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
+8. 本项目是使用基于redis实现的session来保存登录状态的，如果需要可以自行修改为token验证
 
 本项目已经预先实现了一些常用的代码方便参考和复用:
 
