@@ -29,13 +29,15 @@ func NewRouter() *gin.Engine {
 		v1.POST("user/login", api.UserLogin)
 
 		// 需要登录保护的
-		v1.Use(middleware.AuthRequired())
+		auth := v1.Group("")
+		auth.Use(middleware.AuthRequired())
 		{
 			// User Routing
-			v1.GET("user/me", api.UserMe)
-			v1.PUT("user/changepwd", api.ChangePassword)
-			v1.DELETE("user/logout", api.UserLogout)
+			auth.GET("user/me", api.UserMe)
+			auth.PUT("user/changepwd", api.ChangePassword)
+			auth.DELETE("user/logout", api.UserLogout)
 		}
+
 	}
 	return r
 }
