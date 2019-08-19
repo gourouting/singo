@@ -11,7 +11,5 @@ func main() {
 
 	// 装载路由
 	r := server.NewRouter()
-
-	// 运行~ 默认运行在3000端口
-	_ = r.Run(":3000")
+	r.Run(":3000")
 }

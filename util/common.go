@@ -1,9 +1,7 @@
 package util
 
 import (
-	"io/ioutil"
 	"math/rand"
-	"net/http"
 	"time"
 )
 
@@ -17,16 +15,4 @@ func RandStringRunes(n int) string {
 		b[i] = letterRunes[rand.Intn(len(letterRunes))]
 	}
 	return string(b)
-}
-
-// GetHtmlBytes  获取网页bytes源码  可用于验证码之类的
-func GetHtmlBytes(url string) ([]byte, error) {
-	res, err := http.Get(url)
-	if err != nil {
-		return nil, err
-	}
-	defer res.Body.Close()
-	result, _ := ioutil.ReadAll(res.Body)
-	return result, nil
-
 }

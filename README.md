@@ -2,11 +2,23 @@
 
 Singo: Simple Single Golang Web Service
 
+go-crud正式改名为Singo!
+
 使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
 
-原Git: https://github.com/bydmm/singo
+https://github.com/bydmm/singo
 
-这里是经过自己体验之后修改为自己喜欢的样子。 
+## Singo文档
+
+https://singo.gourouting.com/
+
+## 视频实况教程
+
+[让我们写个G站吧！Golang全栈编程实况](https://space.bilibili.com/10/channel/detail?cid=78794)
+
+## 使用Singo开发的项目实例
+
+https://github.com/bydmm/giligili
 
 ## 目的
 
@@ -23,7 +35,7 @@ Singo: Simple Single Golang Web Service
 5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
 6. [Gin-Cors](https://github.com/gin-contrib/cors): Gin框架提供的跨域中间件
 7. 自行实现了国际化i18n的一些基本功能
-8. 本项目是使用基于redis实现的session来保存登录状态的，如果需要可以自行修改为token验证
+8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
 
 本项目已经预先实现了一些常用的代码方便参考和复用:
 
@@ -32,7 +44,6 @@ Singo: Simple Single Golang Web Service
 3. 实现了```/api/v1/user/login```用户登录接口
 4. 实现了```/api/v1/user/me```用户资料接口(需要登录后获取session)
 5. 实现了```/api/v1/user/logout```用户登出接口(需要登录后获取session)
-6. 实现了```/api/v1/user/changepwd```用户修改密码接口(修改后需要重新登陆获取session)
 
 本项目已经预先创建了一系列文件夹划分出下列模块:
 
@@ -58,22 +69,6 @@ SESSION_SECRE=""            # Seesion密钥，必须设置而且不要泄露
 GIN_MODE="debug"            # 设置gin的运行模式，有 debug 和 release
 ```
 
-Windows安装MySQL和Redis麻烦?:no_mouth: 你可以使用[Docker](https://hub.docker.com/)啊！:sunglasses:
-
-- 快速起Redis: `docker run -di --name redis -p 6379:6379 redis` 
-- 快速起MySQL: `docker run -di --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql` 
-
-因为启动容器指定了--name, 后续可以使用`docker start|stop redis|mysql` 来进行开启或者关闭.
-
-如需要使用navicat等工具管理MySQL，可能会出现报错等情况：:dizzy_face:
-```shell
-docker exec -it mysql /bin/bash    # 打开mysql bash交互
-mysql -u root -p                   # 进入mysql交互
-ALTER USER 'root'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;      # 更改加密方式
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';   # 更改密码
-FLUSH PRIVILEGES;                                                          # 刷新
-```
-    
 ## Go Mod
 
 本项目使用[Go Mod](https://github.com/golang/go/wiki/Modules)管理依赖。
@@ -90,12 +85,4 @@ go run main.go // 自动安装
 go run main.go
 ```
 
-项目运行后启动在3000端口（可以修改，参考gin文档)   
-本项目修改端口请查看`main.go`
-
-
-## 编译
-```shell
-go build main.go
-```
-如需交叉编译请看[这里](https://studygolang.com/articles/13760)
+项目运行后启动在3000端口（可以修改，参考gin文档)
