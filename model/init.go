@@ -27,6 +27,8 @@ func Database(connString string) {
 	db.DB().SetMaxOpenConns(100)
 	//超时
 	db.DB().SetConnMaxLifetime(time.Second * 30)
+	//设置创建数据表时的一些属性
+	db = db.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8")
 
 	DB = db
 
