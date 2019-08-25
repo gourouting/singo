@@ -22,7 +22,7 @@ func Database(connString string) {
 	}
 	//设置连接池
 	//空闲
-	db.DB().SetMaxIdleConns(20)
+	db.DB().SetMaxIdleConns(50)
 	//打开
 	db.DB().SetMaxOpenConns(100)
 	//超时
