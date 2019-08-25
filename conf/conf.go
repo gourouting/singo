@@ -9,7 +9,7 @@ import (
 )
 
 // Init 初始化配置项
-func Init() {
+func init() {
 	// 从本地读取环境变量
 	godotenv.Load()
 
