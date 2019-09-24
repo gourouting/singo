@@ -27,17 +27,11 @@ func (service *UserLoginService) Login(c *gin.Context) serializer.Response {
 	var user model.User
 
 	if err := model.DB.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {
-		return serializer.Response{
-			Status: 40001,
-			Msg:    "账号或密码错误",
-		}
+		return serializer.ParamErr("账号或密码错误", nil)
 	}
 
 	if user.CheckPassword(service.Password) == false {
-		return serializer.Response{
-			Status: 40001,
-			Msg:    "账号或密码错误",
-		}
+		return serializer.ParamErr("账号或密码错误", nil)
 	}
 
 	// 设置session

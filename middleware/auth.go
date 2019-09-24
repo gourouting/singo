@@ -33,10 +33,7 @@ func AuthRequired() gin.HandlerFunc {
 			}
 		}
 
-		c.JSON(200, serializer.Response{
-			Status: 401,
-			Msg:    "需要登录",
-		})
+		c.JSON(200, serializer.CheckLogin())
 		c.Abort()
 	}
 }
