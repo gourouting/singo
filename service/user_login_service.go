@@ -3,6 +3,9 @@ package service
 import (
 	"singo/model"
 	"singo/serializer"
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-gonic/gin"
 )
 
 // UserLoginService 管理用户登录的服务
@@ -11,22 +14,34 @@ type UserLoginService struct {
 	Password string `form:"password" json:"password" binding:"required,min=8,max=40"`
 }
 
+// setSession 设置session
+func (service *UserLoginService) setSession(c *gin.Context, user model.User) {
+	s := sessions.Default(c)
+	s.Clear()
+	s.Set("user_id", user.ID)
+	s.Save()
+}
+
 // Login 用户登录函数
-func (service *UserLoginService) Login() (model.User, *serializer.Response) {
+func (service *UserLoginService) Login(c *gin.Context) serializer.Response {
 	var user model.User
 
 	if err := model.DB.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {
-		return user, &serializer.Response{
+		return serializer.Response{
 			Status: 40001,
 			Msg:    "账号或密码错误",
 		}
 	}
 
 	if user.CheckPassword(service.Password) == false {
-		return user, &serializer.Response{
+		return serializer.Response{
 			Status: 40001,
 			Msg:    "账号或密码错误",
 		}
 	}
-	return user, nil
+
+	// 设置session
+	service.setSession(c, user)
+
+	return serializer.BuildUserResponse(user)
 }
