@@ -6,6 +6,7 @@ import (
 	"singo/model"
 	"singo/util"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -13,6 +14,9 @@ import (
 func Init() {
 	// 从本地读取环境变量
 	godotenv.Load()
+	
+	// 设置gin的模式
+	gin.SetMode(os.Getenv("GIN_MODE"))
 
 	// 设置日志级别
 	util.BuildLogger(os.Getenv("LOG_LEVEL"))
