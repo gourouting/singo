@@ -11,7 +11,7 @@ import (
 	validator "gopkg.in/go-playground/validator.v8"
 )
 
-// Ping 状态检查页面
+// Ping 状态检查页面状态
 func Ping(c *gin.Context) {
 	c.JSON(200, serializer.Response{
 		Code: 0,
