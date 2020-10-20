@@ -6,11 +6,11 @@ go-crud正式改名为Singo!
 
 使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
 
-https://github.com/bydmm/singo
+https://github.com/Gourouting/singo
 
 ## Singo文档
 
-https://singo.gourouting.com/
+https://gourouting.github.io/
 
 ## 视频实况教程
 
@@ -18,7 +18,7 @@ https://singo.gourouting.com/
 
 ## 使用Singo开发的项目实例
 
-https://github.com/bydmm/giligili
+https://github.com/Gourouting/giligili
 
 ## 目的
 
