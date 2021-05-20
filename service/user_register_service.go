@@ -22,7 +22,7 @@ func (service *UserRegisterService) valid() *serializer.Response {
 		}
 	}
 
-	count := 0
+	count := int64(0)
 	model.DB.Model(&model.User{}).Where("nickname = ?", service.Nickname).Count(&count)
 	if count > 0 {
 		return &serializer.Response{
