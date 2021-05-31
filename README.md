@@ -18,8 +18,9 @@ https://gourouting.github.io/
 
 ## 使用Singo开发的项目实例
 
-https://github.com/Gourouting/giligili
+仿B站的G站：https://github.com/Gourouting/giligili
 
+Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/singo-token-exmaple
 ## 目的
 
 本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
