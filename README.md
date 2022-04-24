@@ -18,8 +18,9 @@ https://gourouting.github.io/
 
 ## 使用Singo开发的项目实例
 
-https://github.com/Gourouting/giligili
+仿B站的G站：https://github.com/Gourouting/giligili
 
+Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/singo-token-exmaple
 ## 目的
 
 本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
@@ -29,7 +30,7 @@ https://github.com/Gourouting/giligili
 本项目已经整合了许多开发API所必要的组件：
 
 1. [Gin](https://github.com/gin-gonic/gin): 轻量级Web框架，自称路由速度是golang最快的 
-2. [GORM](http://gorm.io/docs/index.html): ORM工具。本项目需要配合Mysql使用 
+2. [GORM](https://gorm.io/index.html): ORM工具。本项目需要配合Mysql使用 
 3. [Gin-Session](https://github.com/gin-contrib/sessions): Gin框架提供的Session操作工具
 4. [Go-Redis](https://github.com/go-redis/redis): Golang Redis客户端
 5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
