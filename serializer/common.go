@@ -1,6 +1,10 @@
 package serializer
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 // Response 基础序列化器
 type Response struct {
@@ -49,7 +53,7 @@ func Err(errCode int, msg string, err error) Response {
 	}
 	// 生产环境隐藏底层报错
 	if err != nil && gin.Mode() != gin.ReleaseMode {
-		res.Error = err.Error()
+		res.Error = fmt.Sprintf("%+v", err)
 	}
 	return res
 }
