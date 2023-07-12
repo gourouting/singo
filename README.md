@@ -8,9 +8,9 @@ go-crud正式改名为Singo!
 
 https://github.com/Gourouting/singo
 
-## Singo文档
+## 更新日志
 
-https://gourouting.github.io/
+已经支持go1.20，请安装这个版本的golang使用本项目
 
 ## 视频实况教程
 
