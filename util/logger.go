@@ -6,9 +6,11 @@ import (
 	"time"
 )
 
+type L uint8
+
 const (
 	// LevelError 错误
-	LevelError = iota
+	LevelError L = iota
 	// LevelWarning 警告
 	LevelWarning
 	// LevelInformational 提示
@@ -17,11 +19,22 @@ const (
 	LevelDebug
 )
 
+var logLevelToString = []string{
+	"error",
+	"warning",
+	"info",
+	"debug",
+}
+
+func (l L) String() string {
+	return logLevelToString[l]
+}
+
 var logger *Logger
 
 // Logger 日志
 type Logger struct {
-	level int
+	level L
 }
 
 // Println 打印
@@ -79,13 +92,13 @@ func (ll *Logger) Debug(format string, v ...interface{}) {
 func BuildLogger(level string) {
 	intLevel := LevelError
 	switch level {
-	case "error":
+	case LevelError.String():
 		intLevel = LevelError
-	case "warning":
+	case LevelWarning.String():
 		intLevel = LevelWarning
-	case "info":
+	case LevelInformational.String():
 		intLevel = LevelInformational
-	case "debug":
+	case LevelDebug.String():
 		intLevel = LevelDebug
 	}
 	l := Logger{
