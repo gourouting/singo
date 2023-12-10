@@ -1,24 +1,21 @@
 package conf
 
 import (
-	"io/ioutil"
-	"strings"
-
+	_ "embed"
 	yaml "gopkg.in/yaml.v2"
+	"strings"
 )
+
+//go:embed locales/zh-cn.yaml
+var Zhcn string
 
 // Dictionary 字典
 var Dictionary *map[interface{}]interface{}
 
 // LoadLocales 读取国际化文件
-func LoadLocales(path string) error {
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		return err
-	}
-
+func LoadLocales() error {
 	m := make(map[interface{}]interface{})
-	err = yaml.Unmarshal([]byte(data), &m)
+	err := yaml.Unmarshal([]byte(Zhcn), &m)
 	if err != nil {
 		return err
 	}
