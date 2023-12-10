@@ -18,7 +18,7 @@ func Init() {
 	util.BuildLogger(os.Getenv("LOG_LEVEL"))
 
 	// 读取翻译文件
-	if err := LoadLocales("conf/locales/zh-cn.yaml"); err != nil {
+	if err := LoadLocales(); err != nil {
 		util.Log().Panic("翻译文件加载失败", err)
 	}
 
