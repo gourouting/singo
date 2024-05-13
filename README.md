@@ -10,7 +10,8 @@ https://github.com/Gourouting/singo
 
 ## 更新日志
 
-已经支持go1.20，请安装这个版本的golang使用本项目
+1.已支持接口测试
+2.已经支持go1.20，请安装这个版本的golang使用本项目
 
 ## 视频实况教程
 
@@ -35,8 +36,9 @@ Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/sing
 4. [Go-Redis](https://github.com/go-redis/redis): Golang Redis客户端
 5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
 6. [Gin-Cors](https://github.com/gin-contrib/cors): Gin框架提供的跨域中间件
-7. 自行实现了国际化i18n的一些基本功能
-8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
+7. [httpexpect](https://github.com/gavv/httpexpect): 接口测试工具
+8. 自行实现了国际化i18n的一些基本功能
+9. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
 
 本项目已经预先实现了一些常用的代码方便参考和复用:
 
@@ -87,3 +89,27 @@ go run main.go
 ```
 
 项目运行后启动在3000端口（可以修改，参考gin文档)
+
+## 接口测试
+【新】本项目内置了接口测试的内容
+
+####使用方法
+0.确保自己在项目根目录下
+1.在test目录下创建test专用的环境变量文件
+
+```
+cp test/.env.example test/.env
+```
+
+2.修改```test/.env```文件内容里的环境变量，保证可以正常连接mysql/redis
+3.在项目根目录执行测试，并开启```-v```检查下测试是否在正确运行
+
+```
+go test -v ./test
+```
+
+4.确保测试可正确运行后，后续去掉-v参数，查看测试是否通过
+```
+go test ./test
+ok      singo/test      (cached)
+```
