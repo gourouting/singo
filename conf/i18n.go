@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"io/ioutil"
+	"os"
 	"strings"
 
 	yaml "gopkg.in/yaml.v2"
@@ -12,7 +12,7 @@ var Dictionary *map[interface{}]interface{}
 
 // LoadLocales 读取国际化文件
 func LoadLocales(path string) error {
-	data, err := ioutil.ReadFile(path)
+	data, err := os.ReadFile(path)
 	if err != nil {
 		return err
 	}
