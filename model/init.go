@@ -11,17 +11,17 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-// DB 数据库链接单例
+// DB is the singleton database connection.
 var DB *gorm.DB
 
-// Database 在中间件中初始化mysql链接
+// Database initializes the MySQL connection.
 func Database(connString string) {
-	// 初始化GORM日志配置
+	// Initialize the GORM logger configuration.
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
 		logger.Config{
 			SlowThreshold:             time.Second, // Slow SQL threshold
-			LogLevel:                  logger.Info, // Log level(这里记得根据需求改一下)
+			LogLevel:                  logger.Info, // Log level. Adjust as needed.
 			IgnoreRecordNotFoundError: true,        // Ignore ErrRecordNotFound error for logger
 			Colorful:                  false,       // Disable color
 		},
@@ -41,10 +41,10 @@ func Database(connString string) {
 		panic(err)
 	}
 
-	//设置连接池
-	//空闲
+	// Set the connection pool.
+	// Idle connections.
 	sqlDB.SetMaxIdleConns(10)
-	//打开
+	// Open connections.
 	sqlDB.SetMaxOpenConns(20)
 	DB = db
 

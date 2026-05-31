@@ -2,7 +2,7 @@ package serializer
 
 import "singo/model"
 
-// User 用户序列化器
+// User is the user serializer.
 type User struct {
 	ID        uint   `json:"id"`
 	UserName  string `json:"user_name"`
@@ -12,7 +12,7 @@ type User struct {
 	CreatedAt int64  `json:"created_at"`
 }
 
-// BuildUser 序列化用户
+// BuildUser serializes a user.
 func BuildUser(user model.User) User {
 	return User{
 		ID:        user.ID,
@@ -24,7 +24,7 @@ func BuildUser(user model.User) User {
 	}
 }
 
-// BuildUserResponse 序列化用户响应
+// BuildUserResponse serializes a user response.
 func BuildUserResponse(user model.User) Response {
 	return Response{
 		Data: BuildUser(user),

@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Session 初始化session
+// Session initializes session handling.
 func Session(secret string) gin.HandlerFunc {
 	store := cookie.NewStore([]byte(secret))
 	//Also set Secure: true if using SSL, you should though

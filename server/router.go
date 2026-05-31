@@ -8,27 +8,27 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// NewRouter 路由配置
+// NewRouter configures routes.
 func NewRouter() *gin.Engine {
 	r := gin.Default()
 
-	// 中间件, 顺序不能改
+	// Middleware. The order must not be changed.
 	r.Use(middleware.Session(os.Getenv("SESSION_SECRET")))
 	r.Use(middleware.Cors())
 	r.Use(middleware.CurrentUser())
 
-	// 路由
+	// Routes
 	v1 := r.Group("/api/v1")
 	{
 		v1.POST("ping", api.Ping)
 
-		// 用户登录
+		// User registration
 		v1.POST("user/register", api.UserRegister)
 
-		// 用户登录
+		// User login
 		v1.POST("user/login", api.UserLogin)
 
-		// 需要登录保护的
+		// Routes that require login protection.
 		auth := v1.Group("")
 		auth.Use(middleware.AuthRequired())
 		{

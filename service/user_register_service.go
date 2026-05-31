@@ -5,7 +5,7 @@ import (
 	"singo/serializer"
 )
 
-// UserRegisterService 管理用户注册服务
+// UserRegisterService manages user registration.
 type UserRegisterService struct {
 	Nickname        string `form:"nickname" json:"nickname" binding:"required,min=2,max=30"`
 	UserName        string `form:"user_name" json:"user_name" binding:"required,min=5,max=30"`
@@ -13,12 +13,12 @@ type UserRegisterService struct {
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm" binding:"required,min=8,max=40"`
 }
 
-// valid 验证表单
+// valid validates the form.
 func (service *UserRegisterService) valid() *serializer.Response {
 	if service.PasswordConfirm != service.Password {
 		return &serializer.Response{
 			Code: 40001,
-			Msg:  "两次输入的密码不相同",
+			Msg:  "The two passwords do not match",
 		}
 	}
 
@@ -27,7 +27,7 @@ func (service *UserRegisterService) valid() *serializer.Response {
 	if count > 0 {
 		return &serializer.Response{
 			Code: 40001,
-			Msg:  "昵称被占用",
+			Msg:  "Nickname is already taken",
 		}
 	}
 
@@ -36,14 +36,14 @@ func (service *UserRegisterService) valid() *serializer.Response {
 	if count > 0 {
 		return &serializer.Response{
 			Code: 40001,
-			Msg:  "用户名已经注册",
+			Msg:  "Username is already registered",
 		}
 	}
 
 	return nil
 }
 
-// Register 用户注册
+// Register registers a user.
 func (service *UserRegisterService) Register() serializer.Response {
 	user := model.User{
 		Nickname: service.Nickname,
@@ -51,23 +51,23 @@ func (service *UserRegisterService) Register() serializer.Response {
 		Status:   model.Active,
 	}
 
-	// 表单验证
+	// Validate the form.
 	if err := service.valid(); err != nil {
 		return *err
 	}
 
-	// 加密密码
+	// Encrypt the password.
 	if err := user.SetPassword(service.Password); err != nil {
 		return serializer.Err(
 			serializer.CodeEncryptError,
-			"密码加密失败",
+			"Failed to encrypt password",
 			err,
 		)
 	}
 
-	// 创建用户
+	// Create the user.
 	if err := model.DB.Create(&user).Error; err != nil {
-		return serializer.ParamErr("注册失败", err)
+		return serializer.ParamErr("Registration failed", err)
 	}
 
 	return serializer.BuildUserResponse(user)

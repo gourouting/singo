@@ -7,16 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Cors 跨域配置
+// Cors configures CORS.
 func Cors() gin.HandlerFunc {
 	config := cors.DefaultConfig()
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Cookie"}
 	if gin.Mode() == gin.ReleaseMode {
-		// 生产环境需要配置跨域域名，否则403
+		// Configure allowed origins in production, otherwise requests return 403.
 		config.AllowOrigins = []string{"http://www.example.com"}
 	} else {
-		// 测试环境下模糊匹配本地开头的请求
+		// In test environments, loosely match requests from local origins.
 		config.AllowOriginFunc = func(origin string) bool {
 			if regexp.MustCompile(`^http://127\.0\.0\.1:\d+$`).MatchString(origin) {
 				return true

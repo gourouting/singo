@@ -9,10 +9,10 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-// RedisClient Redis缓存客户端单例
+// RedisClient is the singleton Redis cache client.
 var RedisClient *redis.Client
 
-// Redis 在中间件中初始化redis链接
+// Redis initializes the Redis connection.
 func Redis() {
 	db, _ := strconv.ParseUint(os.Getenv("REDIS_DB"), 10, 64)
 	client := redis.NewClient(&redis.Options{
@@ -25,7 +25,7 @@ func Redis() {
 	_, err := client.Ping(context.Background()).Result()
 
 	if err != nil {
-		util.Log().Panic("连接Redis不成功", err)
+		util.Log().Panic("failed to connect to Redis: %v", err)
 	}
 
 	RedisClient = client

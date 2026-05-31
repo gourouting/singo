@@ -8,9 +8,9 @@ import (
 	"github.com/gavv/httpexpect"
 )
 
-// 获取HttpExpect
+// getHttpExpect returns an HttpExpect instance.
 func getHttpExpect(t *testing.T) *httpexpect.Expect {
-	// 配置
+	// Configuration.
 	e := httpexpect.WithConfig(httpexpect.Config{
 		Client: &http.Client{
 			Transport: httpexpect.NewBinder(s),
@@ -24,7 +24,7 @@ func getHttpExpect(t *testing.T) *httpexpect.Expect {
 	return e
 }
 
-// 基础测试，保证服务可以运行
+// Basic test to ensure the service can run.
 func TestQngUserLogin(t *testing.T) {
 	e := getHttpExpect(t)
 
@@ -35,7 +35,7 @@ func TestQngUserLogin(t *testing.T) {
 	obj.Value("msg").Equal("Pong")
 }
 
-// 登录和注册
+// Login and registration.
 func TestUserAPI(t *testing.T) {
 	e := getHttpExpect(t)
 
@@ -49,7 +49,7 @@ func TestUserAPI(t *testing.T) {
 		"password_confirm": pwd,
 	}
 
-	// 注册验证
+	// Verify registration.
 	obj := e.POST("/api/v1/user/register").
 		WithHeader("Content-Type", "application/json").
 		WithJSON(data).
@@ -60,7 +60,7 @@ func TestUserAPI(t *testing.T) {
 	resData.Value("user_name").Equal(userName)
 	resData.Value("nickname").Equal(nickName)
 
-	// 验证错误的密码无法登陆
+	// Verify that login fails with an incorrect password.
 	obj = e.POST("/api/v1/user/login").
 		WithHeader("Content-Type", "application/json").
 		WithJSON(map[string]interface{}{
@@ -71,7 +71,7 @@ func TestUserAPI(t *testing.T) {
 		Status(http.StatusOK).JSON().Object()
 	obj.Value("code").Equal(40001)
 
-	// 验证正确的密码无法登陆
+	// Verify that login succeeds with the correct password.
 	obj = e.POST("/api/v1/user/login").
 		WithHeader("Content-Type", "application/json").
 		WithJSON(map[string]interface{}{

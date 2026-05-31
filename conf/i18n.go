@@ -7,10 +7,10 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-// Dictionary 字典
+// Dictionary stores translations.
 var Dictionary *map[interface{}]interface{}
 
-// LoadLocales 读取国际化文件
+// LoadLocales loads internationalization files.
 func LoadLocales(path string) error {
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -28,12 +28,12 @@ func LoadLocales(path string) error {
 	return nil
 }
 
-// T 翻译
+// T translates a key.
 func T(key string) string {
 	dic := *Dictionary
 	keys := strings.Split(key, ".")
 	for index, path := range keys {
-		// 如果到达了最后一层，寻找目标翻译
+		// If this is the last level, find the target translation.
 		if len(keys) == (index + 1) {
 			for k, v := range dic {
 				if k, ok := k.(string); ok {
@@ -46,7 +46,7 @@ func T(key string) string {
 			}
 			return path
 		}
-		// 如果还有下一层，继续寻找
+		// If there is another level, keep searching.
 		for k, v := range dic {
 			if ks, ok := k.(string); ok {
 				if ks == path {

@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// RandStringRunes 返回随机字符串
+// RandStringRunes returns a random string.
 func RandStringRunes(n int) string {
 	var letterRunes = []rune("1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 

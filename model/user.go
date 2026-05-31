@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// User 用户模型
+// User is the user model.
 type User struct {
 	gorm.Model
 	UserName       string
@@ -16,24 +16,24 @@ type User struct {
 }
 
 const (
-	// PassWordCost 密码加密难度
+	// PassWordCost is the password hashing cost.
 	PassWordCost = 12
-	// Active 激活用户
+	// Active is an active user.
 	Active string = "active"
-	// Inactive 未激活用户
+	// Inactive is an inactive user.
 	Inactive string = "inactive"
-	// Suspend 被封禁用户
+	// Suspend is a suspended user.
 	Suspend string = "suspend"
 )
 
-// GetUser 用ID获取用户
+// GetUser gets a user by ID.
 func GetUser(ID interface{}) (User, error) {
 	var user User
 	result := DB.First(&user, ID)
 	return user, result.Error
 }
 
-// SetPassword 设置密码
+// SetPassword sets the password.
 func (user *User) SetPassword(password string) error {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), PassWordCost)
 	if err != nil {
@@ -43,7 +43,7 @@ func (user *User) SetPassword(password string) error {
 	return nil
 }
 
-// CheckPassword 校验密码
+// CheckPassword verifies the password.
 func (user *User) CheckPassword(password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.PasswordDigest), []byte(password))
 	return err == nil
