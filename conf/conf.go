@@ -73,8 +73,8 @@ func DatabaseDSN() (string, error) {
 	config.DBName = name
 	config.ParseTime = parseTime
 	config.Loc = loc
-	config.Params = map[string]string{
-		"charset": charset,
+	if err := config.Apply(mysql.Charset(charset, "")); err != nil {
+		return "", fmt.Errorf("invalid DB_CHARSET: %w", err)
 	}
 
 	return config.FormatDSN(), nil

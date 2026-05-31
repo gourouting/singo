@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"net/url"
 	"strings"
 	"testing"
 
@@ -34,6 +35,21 @@ func parseConfig(t *testing.T, dsn string) *mysql.Config {
 		t.Fatalf("expected parseable DSN, got %v", err)
 	}
 	return config
+}
+
+func dsnQuery(t *testing.T, dsn string) url.Values {
+	t.Helper()
+
+	index := strings.Index(dsn, "?")
+	if index < 0 {
+		t.Fatalf("expected DSN query string, got %q", dsn)
+	}
+
+	query, err := url.ParseQuery(dsn[index+1:])
+	if err != nil {
+		t.Fatalf("expected parseable DSN query string, got %v", err)
+	}
+	return query
 }
 
 func TestDatabaseDSNRequiresUserAndName(t *testing.T) {
@@ -74,8 +90,8 @@ func TestDatabaseDSNUsesDefaults(t *testing.T) {
 	if config.DBName != "singo" {
 		t.Fatalf("expected database singo, got %q", config.DBName)
 	}
-	if config.Params["charset"] != "utf8" {
-		t.Fatalf("expected charset utf8, got %q", config.Params["charset"])
+	if charset := dsnQuery(t, dsn).Get("charset"); charset != "utf8" {
+		t.Fatalf("expected charset utf8, got %q", charset)
 	}
 	if !config.ParseTime {
 		t.Fatal("expected parseTime to be true")
@@ -115,8 +131,8 @@ func TestDatabaseDSNUsesCustomValues(t *testing.T) {
 	if config.DBName != "singo_test" {
 		t.Fatalf("expected database singo_test, got %q", config.DBName)
 	}
-	if config.Params["charset"] != "utf8mb4" {
-		t.Fatalf("expected charset utf8mb4, got %q", config.Params["charset"])
+	if charset := dsnQuery(t, dsn).Get("charset"); charset != "utf8mb4" {
+		t.Fatalf("expected charset utf8mb4, got %q", charset)
 	}
 	if !config.ParseTime {
 		t.Fatal("expected parseTime to be true")

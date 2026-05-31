@@ -11,7 +11,7 @@ https://github.com/Gourouting/singo
 ## Changelog
 
 1. API testing is now supported.
-2. Go 1.20 is now supported. Please install this Go version before using this project.
+2. Go 1.25 is now supported. Please install this Go version before using this project.
 
 ## Video Tutorial
 
